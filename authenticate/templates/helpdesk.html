@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+Help Desk | CSAS Portal
+{% endblock title %}
+
+{% block staticfiles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/helpdesk.css' %}">
+{% endblock staticfiles %}
+
+{% block body %}
+<div id="main-div">
+<h2>Students can contact the admission authorities in case of any dispute using below details:</h2>
+<br>
+<h3>Email: collegehelpdesk@gmail.com</h3>
+<h3>Contact: +91 9988776655</h3>
+</div>
+{% endblock body %}

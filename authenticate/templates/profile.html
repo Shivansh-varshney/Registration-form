@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Profile | CSAS Portal
+{% endblock %}
+
+{% block staticfiles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock %}
+
+{% block body %}
+  
+  {% if user_form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        {% for key, value in user_form.errors.items %}
+          {{ key }} : {{ value }}
+        {% endfor %}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
+  <div class="form-content">
+    <form method="post" action="/profile">
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="col-md-5">
+          <div class="form-group">
+            First Name:<input type="text" class="form-control form-input" id="first_name" name="first_name" value="{{ request.user.first_name }}" />
+            Last Name:<input type="text" class="form-control form-input" id="last_name" name="last_name" value="{{ request.user.last_name }}" />
+            Username:{{ user_form.username }}
+            Email:{{ user_form.email }}
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      <button type="submit" class="btn btn-success btn-lg">Save Changes</button>
+      <button type="reset" class="btn btn-primary btn-lg">Reset</button>
+    </form>
+    <br />
+    <a href="change_password"><button class="btn btn-info btn-lg">Change Password</button></a>
+
+  </div>
+{% endblock %}

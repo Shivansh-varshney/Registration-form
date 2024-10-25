@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Phase 1 | CSAS Portal
+{% endblock %}
+
+{% block staticfiles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}
+
+{% block body %}
+  {% if bankform.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        {% for key, value in bankform.errors.items %}
+          {{ key }} : {{ value }}
+        {% endfor %}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
+  <div class="form-content">
+    <form method="post" action="/bank_detail">
+      <div class="form-row">
+        <div class="col-md-5">
+          <div class="form-group">
+            {% csrf_token %}
+            {{bankform.as_p}}
+          </div>
+        </div>
+      </div>
+      <br /><br />
+      {% if not progress.bank_detail %}
+        <button type="submit" class="btn btn-success btn-lg">Submit Form</button>
+        <button type="reset" class="btn btn-primary btn-lg">Reset</button>
+      {% endif %}
+    </form>
+    <br>
+    <a href="phase1"><button class="btn btn-danger btn-lg">Exit</button></a>
+{% endblock body %}

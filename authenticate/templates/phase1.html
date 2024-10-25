@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Phase 1 | CSAS Portal
+{% endblock %}
+
+{% block staticfiles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/phase.css' %}" />
+{% endblock %}
+
+{% block body %}
+  <div id="main-div">
+    {% if progress.bank_detail %}
+      <h2>Application completed.</h2>
+    {% else %}
+      <h2>Fill all the details very carefully, candidates won't be able to change anything once they click the submit button on each section.</h2>
+    {% endif %}
+
+    {% if progress.family_detail %}
+      <a href="family_detail"><button class="btn btn-success btn-lg">1. Family details</button></a>
+    {% else %}
+      <a href="family_detail"><button class="btn btn-danger btn-lg">1. Family details</button></a>
+    {% endif %}
+
+    {% if progress.personal_detail %}
+      <a href="personal_detail"><button class="btn btn-success btn-lg">2. Personal details</button></a>
+    {% else %}
+      <button class="btn btn-danger btn-lg">2. Personal details</button>
+    {% endif %}
+
+    {% if progress.education %}
+      <a href="education"><button class="btn btn-success btn-lg">3. Secondary education details</button></a>
+    {% else %}
+      <button class="btn btn-danger btn-lg">3. Secondary education details</button>
+    {% endif %}
+
+    {% if progress.bank_detail %}
+      <a href="bank_detail"><button class="btn btn-success btn-lg">4. Bank details for refund</button></a>
+    {% else %}
+      <button class="btn btn-danger btn-lg">4. Bank details for refund</button>
+    {% endif %}
+  </div>
+{% endblock %}

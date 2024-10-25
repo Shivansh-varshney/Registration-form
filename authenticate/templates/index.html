@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home | CSAS Portal
+{% endblock %}
+
+{% block staticfiles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %}
+
+{% block body %}
+ 
+  <div id="main-div">
+    <h2>Each student seeking admission to our University must submit their applicatioin on this portal before</h2>
+    <h3>Date: June 30, 2024</h3>
+    <h3>Time: 12:00 AM</h3>
+    {% if progress.bank_detail %}
+      <a href="phase1"><button class="btn btn-success">Applied</button></a>
+    {% else %}
+      <a href="phase1"><button class="btn btn-info">Apply</button></a>
+    {% endif %}
+
+    <br><br>
+    <h2>The admission process will be in 3 phases:</h2>
+    <h3>Phase 1: Registrations.</h3>
+    <p>In phase 1, students have to register themselves on this CSAS portal. Details required are as below</p>
+    <ol>
+      <li>Family Details</li>
+      <li>Personal Details</li>
+      <li>Secondary Education Details</li>
+      <li>Bank details for refund in case candidate fails to secure admission.</li>
+    </ol>
+    <h3>Phase 2: Preference list</h3>
+    <p>In phase 2, students will give their preference list of course and college combinations for the admission.</p>
+    <p>From July 1,2024 12:00 AM to July 5, 2024 11:59 PM</p>
+    <h3>Phase 3: Declaration of Seats.</h3>
+    <p>On July 8, 2024 at 5pm the alloted seats will be declared. Students who would have been alotted a seat shall accept the seat and
+      pay college fee to secure admission. If a student fails to submit the fee on time his/her seat will be cancelled.
+    </p>
+
+  </div>
+{% endblock %}

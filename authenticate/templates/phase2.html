@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Phase 2 | CSAS Portal
+{% endblock title %}
+
+{% block staticfiles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/phase.css' %}">
+{% endblock staticfiles %}
+
+{% block body %}
+<div id="main-div">
+    <a href="application"><button class="btn btn-danger btn-lg">Exit</button></a>
+</div>
+{% endblock body %}

@@ -1,0 +1,13 @@
+input{
+    height: 2rem;
+}
+
+.form-input{
+    margin-left: 10rem;
+    margin-top: -1rem;
+}
+
+.form-content {
+    margin-left: 10rem;
+    margin-top: 5rem;
+}

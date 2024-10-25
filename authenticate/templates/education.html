@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Phase 1 | CSAS Portal
+{% endblock %}
+
+{% block staticfiles %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+{% endblock %}
+
+{% block body %}
+  {% if subjectform.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        {% for key, value in subjectform.errors.items %}
+          {{ key }} : {{ value }}
+        {% endfor %}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
+  <div class="form-content">
+    <form method="post" action="/education">
+      <div class="form-row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <h2>Senior Secondary School Details:</h2>
+            <br>
+            {% csrf_token %}
+            {{schoolform.as_p}}
+            <br>
+            <h2>Examination Details:</h2>
+            <br>
+            {{marksform.as_p}}
+          </div>
+        </div>
+      </div>
+      <br/>
+      {% if not progress.education %}
+        <button type="submit" class="btn btn-success btn-lg">Save and Next</button>
+        <button type="reset" class="btn btn-primary btn-lg">Reset</button>
+      {% endif %}
+    </form>
+    <br>
+    <a href="/bank_detail"><button class="btn btn-success btn-lg">Next</button></a>
+    <a href="phase1"><button class="btn btn-danger btn-lg">Exit</button></a>
+
+{% endblock body %}

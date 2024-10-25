@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Phase 1 | CSAS Portal
+{% endblock title %}
+
+{% block staticfiles %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}">
+{% endblock staticfiles %}
+
+{% block body %}
+  {% if uploadform.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <div id="form_errors">
+        {% for key, value in upploadform.errors.items %}
+          {{ key }} : {{ value }}
+        {% endfor %}
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  {% endif %}
+
+  <div class="form-content">
+    <form method="post" action="/upload" enctype="multipart/form-data">
+      <div class="form-row">
+        <div class="col-md-5">
+          <div class="form-group">
+            <h2>Upload certificates:</h2>
+            <br>
+            {% csrf_token %}
+            {{uploadform.as_p}}
+          </div>
+        </div>
+      </div>
+      <br />
+      {% if progress.certificates %}
+        <a href="/phase1"><button class="btn btn-success btn-lg">Next</button></a>
+      {% else %}
+        <button type="submit" class="btn btn-success btn-lg">Save and Next</button>
+        <button type="reset" class="btn btn-primary btn-lg">Reset</button>
+      {% endif %}
+    </form>
+    <br>
+    <a href="family_detail"><button class="btn btn-warning btn-lg">Previous</button></a>
+    <a href="phase1"><button class="btn btn-danger btn-lg">Exit</button></a>
+{% endblock body %}
